@@ -1,0 +1,17 @@
+# GET - Listar táxis
+curl http://localhost:4200/taxis | ConvertFrom-Json | Format-Table
+
+# POST - Criar novo táxi
+curl -X POST http://localhost:4200/taxis `
+  -Headers @{"Content-Type"="application/json"} `
+  -Body '{"matricula":"DD-44-DD","modelo":"Peugeot 308","disponivel":true}' | ConvertFrom-Json | Format-Table
+
+# Depois, copia o ID do táxi criado e coloca aqui:
+# PUT - Atualizar táxi
+$id = "COLA_O_ID_AQUI"
+curl -X PUT http://localhost:4200/taxis/$id `
+  -Headers @{"Content-Type"="application/json"} `
+  -Body '{"disponivel":false}' | ConvertFrom-Json | Format-Table
+
+# DELETE - Apagar táxi
+curl -X DELETE http://localhost:4200/taxis/$id
